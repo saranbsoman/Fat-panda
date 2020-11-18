@@ -1,0 +1,20 @@
+<?php
+include_once("classes/userclass.php");
+include_once("settings/settings.php");
+$obj=new userclass();
+session_start();
+	if(isset($_COOKIE['login'])&&($_COOKIE['login'])==1)
+	{
+$f=$_COOKIE['lkey'];
+$hid=$_GET['v'];
+if(isset($_POST["hide"])AND($_POST["hide"])=='h')
+{
+	if(isset($_POST["comp"])AND($_POST["comp"])!=null)
+	{
+		$comp=trim($_POST["comp"]);
+		$obj->addcomplaint($comp,$f,$hid);
+	}
+}		
+$smartyObj->display('complaints.tpl');
+}
+?>

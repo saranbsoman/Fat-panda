@@ -1,0 +1,19 @@
+<?php
+include_once("classes/userclass.php");
+include_once("settings/settings.php");
+$obj=new userclass();
+session_start();
+if(isset($_COOKIE['login'])&&($_COOKIE['login'])==1)
+{
+$key=$_GET['v'];
+$s=$obj->hoteldisp($key);
+$smartyObj->assign('view',$s);
+$s1=$obj->filedisp($key);
+$smartyObj->assign('view1',$s1);	
+$smartyObj->display('viewdocuments.tpl');
+}
+else
+{
+	header("location:adminview.php");
+}
+?>

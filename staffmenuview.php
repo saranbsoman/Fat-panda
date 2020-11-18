@@ -1,0 +1,19 @@
+<?php
+include_once("classes/userclass.php");
+include_once("settings/settings.php");
+$obj=new userclass();
+session_start();
+if(isset($_COOKIE['login'])&&($_COOKIE['login'])==1)
+{
+$fid=$_COOKIE['lkey'];
+$s1=$obj->staffview($id);
+$smartyObj->assign('view3',$s1);
+$s=$obj->staffmenudisp($fid);
+$smartyObj->assign('view',$s);
+$smartyObj->display('staffview.tpl');
+}
+else
+{
+	header("location:loginindex.php");
+}
+?>
